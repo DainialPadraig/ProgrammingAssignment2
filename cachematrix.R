@@ -24,7 +24,7 @@ makeCacheMatrix <- function(x = matrix()) {
     ## Return the cached matrix inverse.
     getinv <- function() matInv  
     
-    ## Return a list of functions cache matrices and matrix inverses.
+    ## Return a list of functions for caching matrices and matrix inverses.
     list(set = set, get = get, setinv = setinv, getinv = getinv)
 
 }
@@ -43,9 +43,9 @@ cacheSolve <- function(x, ...) {
         message("getting cached data...")  ## if so, inform user
         return(matInv)  ## and return the matrix inverse from the cache
     }
-    mat <- x$get()  ## if the inverse wasn't cached, get the cached matrix
-    matInv <- solve(mat, ...)  ## if so, calculate the inverse of the matrix
-    x$setinv(matInv)
+    mat <- x$get()  ## if the inverse wasn't cached, get the original matrix
+    matInv <- solve(mat, ...)  ## and calculate the inverse of the matrix
+    x$setinv(matInv)  ## cache the calculated inverse
     
     matInv  ## return the inverse of the matrix
 
