@@ -44,12 +44,8 @@ cacheSolve <- function(x, ...) {
         return(matInv)  ## and return the matrix inverse from the cache
     }
     mat <- x$get()  ## if the inverse wasn't cached, get the cached matrix
-    if (det(mat) != 0) {  ## check determinant to see if matrix is invertible
-        matInv <- solve(mat, ...)  ## if so, calculate the inverse of the matrix
-        x$setinv(matInv)
-    } else {  ## matrix wasn't invertible (determinant == 0), return an error
-        message("ERROR: The matrix is not invertible!")
-    }
+    matInv <- solve(mat, ...)  ## if so, calculate the inverse of the matrix
+    x$setinv(matInv)
     
     matInv  ## return the inverse of the matrix
 
